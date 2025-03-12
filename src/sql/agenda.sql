@@ -13,3 +13,5 @@ CREATE TABLE IF NOT EXISTS Contact (
     `id contacto` INT(4) PRIMARY KEY AUTO_INCREMENT,
     `description` TEXT
 );
+
+CREATE Table IF NOT EXISTS `Contact type` ()
