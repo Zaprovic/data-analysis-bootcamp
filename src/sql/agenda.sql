@@ -1,17 +1,92 @@
-CREATE DATABASE IF NOT EXISTS agenda;
+CREATE DATABASE IF NOT EXISTS Libreria;
 
-USE agenda;
+USE Libreria;
 
-CREATE TABLE IF NOT EXISTS Persona (
+DROP Table IF EXISTS Libros;
+
+CREATE TABLE IF NOT EXISTS Libros (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    `id contacto` INT(4) NOT NULL,
-    `name` VARCHAR(255) NOT NULL,
-    `last name` VARCHAR(255) NOT NULL
+    title VARCHAR(40) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    editor VARCHAR(40) NOT NULL,
+    price FLOAT NOT NULL,
+    qty INT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Contact (
-    `id contacto` INT(4) PRIMARY KEY AUTO_INCREMENT,
-    `description` TEXT
-);
+INSERT INTO
+    Libros (title, author, editor, price, qty)
+VALUES
+    (
+        'The Art of War',
+        'Sun Tzu',
+        'Arthur',
+        40.99,
+        100
+    ),
+    (
+        'War and Peace',
+        'Leo Tolstoy',
+        'Leo Tolstoy',
+        22.99,
+        300
+    ),
+    (
+        'A Game of Thrones',
+        'George R. R. Martin',
+        'George R. R. Martin',
+        52.99,
+        50
+    ),
+    (
+        'Lord of the Rings',
+        'J.R.R. Tolkien',
+        'J.R.R. Tolkien',
+        34.99,
+        75
+    ),
+    (
+        'One Hundred Years of Solitude',
+        'Gabriel Garcia Marquez',
+        'Gabriel Garcia Marquez',
+        41.99,
+        200
+    );
 
-CREATE Table IF NOT EXISTS `Contact type` ()
+SELECT
+    *
+FROM
+    Libros
+WHERE
+    qty > 50;
+
+SELECT
+    *
+from
+    `Libros`;
+
+SELECT
+    title,
+    author,
+    editor,
+    price
+FROM
+    Libros
+WHERE
+    author LIKE('G%');
+
+SELECT
+    *
+FROM
+    Libros
+WHERE
+    price BETWEEN 20
+    AND 45
+ORDER BY
+    price ASC;
+
+SELECT
+    *
+FROM
+    Libros
+WHERE
+    editor LIKE('Arthur%');
