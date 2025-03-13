@@ -104,7 +104,7 @@ FROM <tableName>
         AND/OR ... <conditionN>
     ORDER BY <columnName> <ASC/DESC>
     LIMIT <numberOfRows> OFFSET <numberOfRowsToSkip>;
-
+```
 
 ## **Insert operations**
 When inserting data into a database, we can use the INSERT statement, in which we declare what table to write into, the columns of data that we are filling and one or more rows of data to insert. In general, each row of data that is inserted should contain values for every corresponding column in the table and we can also insert multiples rows at a time by adding them sequentially.
