@@ -14,9 +14,14 @@ CREATE TABLE IF NOT EXISTS Libros (
 );
 
 INSERT INTO
-    Libros (title, author, editor, price, qty)
-VALUES
-    (
+    Libros (
+        title,
+        author,
+        editor,
+        price,
+        qty
+    )
+VALUES (
         'The Art of War',
         'Sun Tzu',
         'Arthur',
@@ -52,41 +57,19 @@ VALUES
         200
     );
 
-SELECT
-    *
-FROM
-    Libros
-WHERE
-    qty > 50;
+SELECT * FROM Libros WHERE qty > 50;
 
-SELECT
-    *
-from
-    `Libros`;
+SELECT * from `Libros`;
 
-SELECT
-    title,
-    author,
-    editor,
-    price
-FROM
-    Libros
+SELECT title, author, editor, price
+FROM Libros
 WHERE
     author LIKE('G%');
 
-SELECT
-    *
-FROM
-    Libros
+SELECT *
+FROM Libros
 WHERE
-    price BETWEEN 20
-    AND 45
-ORDER BY
-    price ASC;
+    price BETWEEN 20 AND 45
+ORDER BY price ASC;
 
-SELECT
-    *
-FROM
-    Libros
-WHERE
-    editor LIKE('Arthur%');
+SELECT * FROM Libros WHERE editor LIKE('Arthur%');
