@@ -22,7 +22,7 @@ El proyecto se desarrollará en las siguientes etapas:
 
 2. **Limpieza y Preprocesamiento de los Datos**
 
-   - Aplicación de técnicas de `data cleaning` utilizando `pandas` y `numpy`.
+   - Aplicación de técnicas de _data cleaning_ utilizando `pandas` y `numpy`.
    - Manejo de valores nulos, duplicados y posibles inconsistencias.
 
 3. **Construcción del Modelo Predictivo**
