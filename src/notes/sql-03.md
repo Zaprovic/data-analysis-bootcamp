@@ -114,7 +114,8 @@ In the case of the players, a problem like this arises when we want to be more s
 - If skill is between 1 and 3 then the player is a beginner
 - If skill is between 4 and 6 then the player is intermediate
 - If skill is between 7 and 9 then the player is advanced
-  Here we have two non-key columns (`Skill` and `Level`) in which the level depends on the skill, so if the player’s skill changes, then the level must also change, but in order to avoid an update anomaly we create another table relating the skill and level
+
+Here we have two non-key columns (`Skill` and `Level`) in which the level depends on the skill, so if the player’s skill changes, then the level must also change, but in order to avoid an update anomaly we create another table relating the skill and level
 
 | Skill | Level        |
 | ----- | ------------ |
