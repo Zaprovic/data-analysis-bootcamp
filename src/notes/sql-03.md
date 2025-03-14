@@ -129,6 +129,90 @@ Here we have two non-key columns (`Skill` and `Level`) in which the level depend
 | 8     | Advanced     |
 | 9     | Advanced     |
 
+### 4NF - Fourth normal form
+
+Most of the time if the database reaches up to 3NF it is sufficient to say its normalized, however the fourth normal form is also a thing and can be useful sometimes.
+
+Imagine you are playing Mario Kart Wii. If you unlocked all players and vehicles, then in total there will be 25 characters and 36 vehicles including bikes and karts. Each combination of character and vehicle will also have different stats of velocity, acceleration, weight, handling, drift type, off-road and mini-turbo. This can become in a lot of data so we will pick a handful of these combinations
+
+- First combo
+  - Character: Funky Kong
+  - Bikes: Bowser Bike, Spear
+  - Karts: Jetsetter, Honeycoupe
+- Second combo
+  - Characters: Toad
+  - Bikes: Magikruiser, Jet Bubble
+  - Karts: Blue Falcon, Tiny Titan
+- Third combo
+  - Characters: Daisy
+  - Bikes: Mach Bike, Dolphin Dasher
+  - Karts: Wild Wing, Sprinter
+
+The following table can be constructed based on the given information
+
+| Character  | Bike           | Kart        |
+| ---------- | -------------- | ----------- |
+| Funky Kong | Bowser Bike    | Jetsetter   |
+| Funky Kong | Bowser Bike    | Honeycoupe  |
+| Funky Kong | Spear          | Jetsetter   |
+| Funky Kong | Spear          | Honeycoupe  |
+| Toad       | Magikruiser    | Blue Falcon |
+| Toad       | Magikruiser    | Tiny Titan  |
+| Toad       | Jet Bubble     | Blue Falcon |
+| Toad       | Jet Bubble     | Tity Titan  |
+| Daisy      | Mach Bike      | Wild Wing   |
+| Daisy      | Mach Bike      | Sprinter    |
+| Daisy      | Dolphin Dasher | Wild Wing   |
+| Daisy      | Dolphin Dasher | Sprinter    |
+
+What happens if Toad unlockes a new kart? Let’s say this new kart is the cheep charger, that means the table must be updated as follows
+
+| Character  | Bike           | Kart            |
+| ---------- | -------------- | --------------- |
+| Funky Kong | Bowser Bike    | Jetsetter       |
+| Funky Kong | Bowser Bike    | Honeycoupe      |
+| Funky Kong | Spear          | Jetsetter       |
+| Funky Kong | Spear          | Honeycoupe      |
+| Toad       | Magikruiser    | Blue Falcon     |
+| Toad       | Magikruiser    | Tiny Titan      |
+| Toad       | Jet Bubble     | Blue Falcon     |
+| Toad       | Jet Bubble     | Tity Titan      |
+| _Toad_     | _Magikruiser_  | _Cheep Charger_ |
+| _Toad_     | _Jet Bubble_   | _Cheep Charger_ |
+| Daisy      | Mach Bike      | Wild Wing       |
+| Daisy      | Mach Bike      | Sprinter        |
+| Daisy      | Dolphin Dasher | Wild Wing       |
+| Daisy      | Dolphin Dasher | Sprinter        |
+
+Here we can notice the table is vulnerable to an update anomaly because if something goes wrong and just one record gets updated instead of two, then the data will be inconsistent. Even tough the table is up to 3NF, there is still some sort of dependency on the bikes and karts combination with the characters. This is what we call _multivalued dependency_ and is denoted as follows
+
+$$
+\begin{align*}
+\{\text{Character}\} \Rightarrow \{\text{Bike}\} \\
+\{\text{Character}\} \Rightarrow \{\text{Kart}\}
+\end{align*}
+$$
+
+Fourth normal form states that these multivalued dependencies must only dependent on the table’s key, so to fix the problem, we create new tables
+
+| Character  | Bike           |
+| ---------- | -------------- |
+| Funky Kong | Bowser Bike    |
+| Funky Kong | Spear          |
+| Toad       | Magikruiser    |
+| Toad       | Jet Bubble     |
+| Daisy      | Mach Bike      |
+| Daisy      | Dolphin Dasher |
+
+| Character  | Kart        |
+| ---------- | ----------- |
+| Funky Kong | Jetsetter   |
+| Funky Kong | Honeycoupe  |
+| Toad       | Blue Falcon |
+| Toad       | Tiny Titan  |
+| Daisy      | Wild Wing   |
+| Daisy      | Sprinter    |
+
 ## Videos
 
 - [Learn Database Normalization - Decomplexify](https://www.youtube.com/watch?v=GFQaEYEc8_8&t=989s)
