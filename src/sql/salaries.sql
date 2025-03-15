@@ -133,3 +133,19 @@ select total_salaries.airline_name
 from total_salaries, average_salary
 where
     total_salaries.total > average_salary.a;
+
+with
+    total_salaries as (
+        select p.airline_name, sum(e.salary) as total_salary
+        from employees e
+            inner join pilots p on e.employee_id = p.employee_id
+        group by
+            p.airline_name
+    )
+select ts.airline_name
+from total_salaries ts
+where
+    ts.total_salary > (
+        select avg(e.salary)
+        from employees e
+    );
